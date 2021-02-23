@@ -1,0 +1,185 @@
+<div class="searchBar">
+  <input
+    id="typeahead-basic"
+    type="text"
+    class="form-control"
+    placeholder="Search products, customers & actions"
+  />
+  <i class="fa fa-search" aria-hidden="true"></i>
+</div>
+<div class="transaction-list">
+  <div class="list row">
+    <p class="title">Transaction Logs</p>
+  </div>
+  <div class="list row">
+    <div class="col-md-3">
+      <label>Provider</label>
+      <div ngbDropdown class="d-inline-block dropdown">
+        <button class="btn" id="providerDropdown" ngbDropdownToggle>
+          {{ selectedProvider }}
+        </button>
+        <div ngbDropdownMenu aria-labelledby="providerDropdown">
+          <button
+            *ngFor="let provider of providers"
+            ngbDropdownItem
+            (click)="clickProvider(provider)"
+          >
+            {{ provider }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label>User</label>
+      <div ngbDropdown class="d-inline-block dropdown">
+        <button class="btn" id="userDropdown" ngbDropdownToggle>
+          {{ selectedUser }}
+        </button>
+        <div ngbDropdownMenu aria-labelledby="userDropdown">
+          <button
+            *ngFor="let user of users"
+            ngbDropdownItem
+            (click)="clickUser(user)"
+          >
+            {{ user }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label>Start Date</label>
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              [(ngModel)]="startDate"
+              ngbDatepicker
+              #d="ngbDatepicker"
+              (ngModelChange)="filter()"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary calendar"
+                (click)="d.toggle()"
+                type="button"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <label>End Date</label>
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp1"
+              [(ngModel)]="endDate"
+              ngbDatepicker
+              #d1="ngbDatepicker"
+              (ngModelChange)="filter()"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary calendar"
+                (click)="d1.toggle()"
+                type="button"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="list row">
+    <button class="btn btn-primary generate">Generate</button>
+  </div>
+  <div class="list row order-list">
+    <p class="title">Recent Orders</p>
+    <a href="#" class="external-link"
+      ><i class="fa fa-external-link" aria-hidden="true"></i> Export
+    </a>
+  </div>
+  <div class="list row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Client</th>
+          <th scope="col">Details</th>
+          <th scope="col">Order</th>
+          <th scope="col">Processed By</th>
+          <th scope="col">Date</th>
+          <th scope="col">Subtotal</th>
+          <th scope="col">Covered</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of tutorials">
+          <td class="profile">
+            <img
+              [src]="transaction.photo"
+              class="mr-2"
+              style="width: 40px; height: 40px"
+            />
+            <div class="details">
+              <p class="name">{{ transaction.name }}</p>
+              <p class="idIndex">ID {{ transaction.idIndex }}</p>
+            </div>
+          </td>
+          <td>
+            <p>{{ transaction.sex }} | {{ transaction.age }}</p>
+            <p>+ {{ transaction.phone }}</p>
+          </td>
+          <td>
+            <p>{{ transaction.order }} items</p>
+            <a href="#">View Details</a>
+          </td>
+          <td>
+            <p>{{ transaction.processByName }}</p>
+            <p>{{ transaction.processByEmail }}</p>
+          </td>
+          <td>
+            <p>{{ transaction.date }}</p>
+          </td>
+          <td>
+            <p>${{ transaction.subtotal }}</p>
+          </td>
+          <td>
+            <p>${{ transaction.covered }}</p>
+          </td>
+          <td *ngIf="transaction.subtotal && transaction.covered">
+            <p>${{ transaction.subtotal + transaction.covered }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2 pagination">
+      <ngb-pagination
+        [collectionSize]="collectionSize"
+        [(page)]="page"
+        [pageSize]="pageSize"
+        (pageChange)="refreshTransactions()"
+      >
+      </ngb-pagination>
+
+      <select
+        class="custom-select"
+        style="width: auto"
+        [(ngModel)]="pageSize"
+        (ngModelChange)="refreshTransactions()"
+      >
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
+  </div>
+</div>

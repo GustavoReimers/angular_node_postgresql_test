@@ -1,0 +1,146 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="photo">Photo</label>
+        <input
+          type="text"
+          class="form-control"
+          id="photo"
+          required
+          [(ngModel)]="tutorial.photo"
+          name="photo"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="provider">Provider</label>
+        <input
+          class="form-control"
+          id="provider"
+          required
+          [(ngModel)]="tutorial.provider"
+          name="provider"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="name">name</label>
+        <input
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="tutorial.name"
+          name="name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="idIndex">Id</label>
+        <input
+          class="form-control"
+          id="idIndex"
+          required
+          [(ngModel)]="tutorial.idIndex"
+          name="idIndex"
+        />
+      </div>
+      <div class="form-group">
+        <label for="sex">sex</label>
+        <input
+          class="form-control"
+          id="sex"
+          required
+          [(ngModel)]="tutorial.sex"
+          name="sex"
+        />
+      </div>
+      <div class="form-group">
+        <label for="age">age</label>
+        <input
+          class="form-control"
+          id="age"
+          required
+          [(ngModel)]="tutorial.age"
+          name="age"
+        />
+      </div>
+      <div class="form-group">
+        <label for="phone">phone</label>
+        <input
+          class="form-control"
+          id="phone"
+          required
+          [(ngModel)]="tutorial.phone"
+          name="phone"
+        />
+      </div>
+      <div class="form-group">
+        <label for="order">order</label>
+        <input
+          class="form-control"
+          id="order"
+          required
+          [(ngModel)]="tutorial.order"
+          name="order"
+        />
+      </div>
+      <div class="form-group">
+        <label for="processByName">processByName</label>
+        <input
+          class="form-control"
+          id="processByName"
+          required
+          [(ngModel)]="tutorial.processByName"
+          name="processByName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="processByEmail">processByEmail</label>
+        <input
+          class="form-control"
+          id="processByEmail"
+          required
+          [(ngModel)]="tutorial.processByEmail"
+          name="processByEmail"
+        />
+      </div>
+      <div class="form-group">
+        <label for="date">date</label>
+        <input
+          class="form-control"
+          id="date"
+          required
+          [(ngModel)]="tutorial.date"
+          name="date"
+        />
+      </div>
+      <div class="form-group">
+        <label for="subtotal">subtotal</label>
+        <input
+          class="form-control"
+          id="subtotal"
+          required
+          [(ngModel)]="tutorial.subtotal"
+          name="subtotal"
+        />
+      </div>
+      <div class="form-group">
+        <label for="covered">covered</label>
+        <input
+          class="form-control"
+          id="covered"
+          required
+          [(ngModel)]="tutorial.covered"
+          name="covered"
+        />
+      </div>
+
+      <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Tutorial was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newTutorial()">Add</button>
+    </div>
+  </div>
+</div>
